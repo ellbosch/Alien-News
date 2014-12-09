@@ -1,0 +1,36 @@
+@font-face {
+    font-family: OpenSans;
+    src: url(fonts/Open_Sans);
+}
+
+body {
+	background-color: #f8f8f8;
+}
+
+#content {
+	max-width: 1000px;
+	margin: 20px auto;
+	font-family: OpenSans;
+}
+
+.post {
+	margin: 5px 0;
+	padding: 5px;
+	background-color: #fff;
+	font-weight: lighter;
+}
+
+.post_header * {
+	display: inline-block;
+}
+
+.post_header h1 {
+	font-size: 18px;
+	font-weight: bold;
+	font-style: italic;
+	vertical-align: top;
+}
+
+.post_header img {
+	max-width: 200px;
+}
