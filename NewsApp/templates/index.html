@@ -7,6 +7,22 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 </head>
+<header>
+    <div class="container">
+      <nav>
+        <ul class="menu">
+          <li><a href="{{ url_for('homepage') }}">Home</a></li>
+          {% if 'email' in session %}
+          <li><a href="{{ url_for('profile') }}">Profile</a></li>
+          <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
+          {% else %}
+          <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+          <li><a href="{{ url_for('signin') }}">Sign In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
 <body>
 	<div id="content">
 	{% for post in post_list %}
