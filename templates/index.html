@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Alien News</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+	<div id="content">
+	{% for post in post_list %}
+		<div class="post">
+			<div class="post_header">
+				<img src="{{ post.image }}">
+				<h1>{{ post.article_title }}</h1>
+			</div>
+			<div class="article_content">{{ post.summary }}</div>
+		</div>
+	{% endfor %}
+	</div>
+</body>
+</html>
