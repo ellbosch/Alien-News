@@ -2,20 +2,13 @@ from flask.ext.wtf import Form
 from wtforms.fields import TextField, TextAreaField, SubmitField, PasswordField
 from wtforms import validators
 from models import User
- 
-class ContactForm(Form):
-  name = TextField("Name",  [validators.Required("Please enter your name.")])
-  email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
-  subject = TextField("Subject",  [validators.Required("Please enter a subject.")])
-  message = TextAreaField("Message",  [validators.Required("Please enter a message.")])
-  submit = SubmitField("Send")
 
 
 class SignupForm(Form):
-  firstname = TextField("First name",  [validators.Required("Please enter your first name.")])
-  lastname = TextField("Last name",  [validators.Required("Please enter your last name.")])
-  email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
-  password = PasswordField('Password', [validators.Required("Please enter a password.")])
+  firstname = TextField("First name",  [validators.DataRequired("Please enter your first name.")])
+  lastname = TextField("Last name",  [validators.DataRequired("Please enter your last name.")])
+  email = TextField("Email",  [validators.DataRequired("Please enter your email address."), validators.Email("Please enter your email address.")])
+  password = PasswordField('Password', [validators.DataRequired("Please enter a password.")])
   submit = SubmitField("Create account")
  
   def __init__(self, *args, **kwargs):
@@ -34,8 +27,8 @@ class SignupForm(Form):
 
 
 class SigninForm(Form):
-  email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
-  password = PasswordField('Password', [validators.Required("Please enter your password.")])
+  email = TextField("Email",  [validators.DataRequired("Please enter your email address."), validators.Email("Please enter your email address.")])
+  password = PasswordField('Password', [validators.DataRequired("Please enter your password.")])
   submit = SubmitField("Sign In")
    
   def __init__(self, *args, **kwargs):

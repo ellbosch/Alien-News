@@ -4,6 +4,7 @@ import praw
 from flask import render_template, request, flash, session, url_for, redirect
 from forms import SignupForm, SigninForm
 from models import db, User
+import time
  
 app.secret_key = 'development key'
 
@@ -18,6 +19,14 @@ class RedditPost():
 
         self.article_title = article.title
         self.image = article.top_image
+
+def timerDecorator(f):
+  def new_f(*args):
+    t1 = time.clock()
+    result = f(*args)
+    t2 = time.clock()
+    t_elapsed = t2 - t1
+    print "Elapsed Time: " + str(t_elapsed)
 
 def get_useragent():
     return praw.Reddit(user_agent='Alien News/1.0 by ellbosch')
