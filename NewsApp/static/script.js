@@ -8,7 +8,7 @@ $(function() {
 	}
 
 	function resize_posts_div() {
-		width = $(window).width() - NAMESPACE.article_width - 5;
+		width = $(window).width() - NAMESPACE.article_width;
 		$("#posts_list_div").css('width', width);
 	}
 

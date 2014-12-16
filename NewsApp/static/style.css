@@ -103,20 +103,24 @@ header ul li:hover {
 }
 
 .post {
-	margin-bottom: 10px;
+	margin-bottom: 1px;
 	padding: 5px;
 	background-color: #fff;
 	font-weight: lighter;
+}
+
+.post:hover {
+    background-color: #E3EFFF;
+    cursor: pointer;
 }
 
 .post_header * {
 	display: inline-block;
 }
 
-.post_header h1 {
-	font-size: 18px;
-	font-weight: bold;
-	font-style: italic;
+.post_header h3 {
+	font-size: 16px;
+    font-weight: normal;
 	vertical-align: top;
 }
 
@@ -128,11 +132,13 @@ header ul li:hover {
     position: absolute;
     display: inline-block;
     background-color: #fff;
-    width: 600px;
+    width: 700px;
     height: 100%;
     right: 0;
     overflow: scroll;
     top: 0;
+    border-left: 1px solid #eee;
+    padding: 10px;
 }
 
 #article_content {
@@ -199,7 +205,11 @@ form input#password {
 
 form label {
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: lighter;
     display: block;
     padding: 10px 0;
+}
+
+form .form_header {
+    background-color: #f8f8f8;
 }
