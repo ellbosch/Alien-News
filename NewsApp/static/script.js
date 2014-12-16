@@ -8,7 +8,7 @@ $(function() {
 	}
 
 	function resize_posts_div() {
-		width = $(window).width() - NAMESPACE.article_width - 5;
+		width = $(window).width() - NAMESPACE.article_width;
 		$("#posts_list_div").css('width', width);
 	}
 
@@ -24,6 +24,27 @@ $(function() {
 	$("#close_button").click(function() {
 		$("#sidebar").hide("slide");
 	});
+
+	// // updates what article is viewed
+	// $(".post").on('mousedown', function(){
+	// 	$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+	// 	$.getJSON($SCRIPT_ROOT + '/article', {
+	//         'url': $(this).attr("data-url");
+	//     }, function(data) {
+	//         console.log(data.result);
+	//     });
+
+	// 	// var url = $(this).attr("data-url");
+	// 	// var get_url = "http://127.0.0.1:5000/article/" + url
+		
+	// 	// var xmlHttp = null;
+	// 	// xmlHttp = new XMLHttpRequest();
+	// 	// xmlHttp.open("GET", get_url, true);
+	// 	// xmlHttp.send();
+	// 	// console.log(xmlHttp.responseText);
+	// 	// return xmlHttp.responseText;
+
+	// });
 
 	// function call that runs on page load
 	init();
