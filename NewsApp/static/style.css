@@ -138,6 +138,7 @@ header ul li:hover {
     overflow: scroll;
     top: 0;
     border-left: 1px solid #eee;
+    padding: 10px;
 }
 
 #article_content {

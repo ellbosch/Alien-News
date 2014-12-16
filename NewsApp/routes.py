@@ -1,6 +1,6 @@
 from NewsApp import app
 from newspaper import Article
-from flask import render_template, request, flash, session, url_for, redirect
+from flask import render_template, request, flash, session, url_for, redirect, jsonify
 from forms import SignupForm, SigninForm
 from models import db, User
 import praw
@@ -58,12 +58,12 @@ def homepage():
 
 @app.route('/article/')
 def show_article():
-    url = request.args.get('url', 0, type=int)
+    url = str(request.args['url'])
 
+    article = ArticlePost(url)
 
-
-
-    return jsonify(result = url)
+    return jsonify(result = {"title": article.title,
+                             "text": article.text})
 
 
 @app.route('/signup', methods=['GET', 'POST'])

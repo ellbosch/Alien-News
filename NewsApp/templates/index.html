@@ -29,6 +29,7 @@
 		<div id="article_div">
 			<div id="article_content">
 				<h2>{{ article.title }}</h2>
+				<div>{{ article.text }}</div>
 			</div>
 		</div>
 	</div>
@@ -55,19 +56,10 @@
 			$.getJSON($SCRIPT_ROOT + '/article', {
 		        url: $(this).attr("data-url")
 		    }, function(data) {
-		        console.log(data.result);
+		    	var header = "<h2>" + data.result['title'] + "</h2>"
+		    	var text = "<div>" + data.result['text'] + "</div>"
+		    	$("#article_div").html(header + text);
 		    });
-
-			// var url = $(this).attr("data-url");
-			// var get_url = "http://127.0.0.1:5000/article/" + url
-			
-			// var xmlHttp = null;
-			// xmlHttp = new XMLHttpRequest();
-			// xmlHttp.open("GET", get_url, true);
-			// xmlHttp.send();
-			// console.log(xmlHttp.responseText);
-			// return xmlHttp.responseText;
-
 		});
 	</script>
 </body>
