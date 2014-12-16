@@ -5,6 +5,9 @@ from forms import SignupForm, SigninForm
 from models import db, User
 import time
 import praw
+from functools import wraps
+import itertools
+from random import shuffle
 
  
 app.secret_key = 'development key'
@@ -34,13 +37,15 @@ class ArticlePost():
         self.text = article.text
 
 
-def timerDecorator(f):
+def login_required(f):
+    @wraps(f)
     def new_f(*args):
-        t1 = time.clock()
-        result = f(*args)
-        t2 = time.clock()
-        t_elapsed = t2 - t1
-        print "Elapsed Time: " + str(t_elapsed)
+        if 'email' not in session:
+            return redirect(url_for('signin'))
+        else:
+            return f(*args)
+    return new_f
+
 
 
 def get_useragent():
@@ -57,9 +62,20 @@ def get_reddit_posts(subreddit, n):
     return posts
 
 
+def random_subreddit():
+    subr = ""
+    subreddits = ['worldnews', 'science', 'technology', 'news']
+    shuffle(subreddits)
+
+    for s in itertools.islice(subreddits, 1):
+        subr = s
+    return subr
+
+
 @app.route('/')
 def homepage():
-    posts = get_reddit_posts('worldnews', 10)
+    sub = random_subreddit()
+    posts = get_reddit_posts(sub, 10)
 
     article = ArticlePost(posts[0].url)
 
@@ -99,6 +115,7 @@ def signup():
 
 
 @app.route('/profile')
+@login_required
 def profile():
     if 'email' not in session:
         return redirect(url_for('signin'))
@@ -124,25 +141,15 @@ def signin():
         else:
             session['email'] = form.email.data
             return redirect(url_for('profile'))
-                 
+
     elif request.method == 'GET':
         return render_template('signin.html', form=form)
 
 
 @app.route('/signout')
+@login_required
 def signout():
-    if 'email' not in session:
-        return redirect(url_for('signin'))
      
     session.pop('email', None)
-    return redirect(url_for('homepage'))
+    return redirect(url_for('signin'))
 
-
-@app.route('/testdb')
-def testdb():
-    if db.session.query("1").from_statement("SELECT 1").all():
-        return 'It works.'
-    else:
-        return 'Something is broken.'
-# if __name__ == '__main__':
-#   app.run(debug=True)
