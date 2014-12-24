@@ -5,18 +5,55 @@
 	<title>Alien News</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 <body>
 	<div id="content">
-	{% for post in post_list %}
-		<div class="post">
-			<div class="post_header">
-				<img src="{{ post.image }}">
-				<h1>{{ post.article_title }}</h1>
+		<div id="posts_list_div">
+			<header>
+				<ul id="posts_header">
+					<li id="sidebar_button">Menu</li>
+				</ul>
+			</header>
+
+			<div class="invisible_space"></div>
+
+			{% for post in post_list %}
+			<div class="post" data-url="{{ post.url }}">
+				<div class="post_header">
+					<h3>{{ post.reddit_title }}</h3>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div id="article_div">
+			<div id="article_content">
+				<h2>{{ article.title }}</h2>
+				<div>{{ article.text }}</div>
 			</div>
 		</div>
-	{% endfor %}
 	</div>
+
+	<!-- SIDEBAR (hides on default) -->
+	<section id="sidebar">
+		<div id="close_button">CLOSE</div>
+		<ul class="menu">
+			<li><a href="{{ url_for('homepage') }}">Home</a></li>
+		</ul>
+	</section>
+
+	<script type="text/javascript">
+		// updates what article is viewed
+		$(".post").on('mousedown', function(){
+			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+			$.getJSON($SCRIPT_ROOT + '/article', {
+		        url: $(this).attr("data-url")
+		    }, function(data) {
+		    	var header = "<h2>" + data.result['title'] + "</h2>"
+		    	var text = "<div>" + data.result['text'] + "</div>"
+		    	$("#article_div").html(header + text);
+		    });
+		});
+	</script>
 </body>
 </html>

@@ -5,32 +5,211 @@
 
 body {
 	background-color: #f8f8f8;
+    font-family: OpenSans;
+    margin: 0;
+    overflow: hidden;
 }
 
+.invisible_space {
+    height: 60px;
+}
+
+/* SIDEBAR */
+
+#sidebar {
+    display: none;
+    height: 100%;
+    background-color: #222;
+    position: absolute;
+    top: 0;
+    width: 200px;
+}
+
+#sidebar #close_button {
+    height: 60px;
+    line-height: 60px;
+    background-color: #E23B4D;
+    color: #fff;
+    padding-left: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#sidebar #close_button:hover {
+    background-color: #F94B35;
+}
+
+.menu {
+    height: 40px;
+    padding: 0;
+}
+
+.menu li {
+    height: 100%;
+    line-height: 40px;
+    list-style: none;
+    padding-left: 15px;
+}
+
+.menu li a {
+    color: #366BFF;
+    text-decoration: none;
+}
+
+.menu li a:hover {
+    color: #4817CC;
+}
+
+header {
+    height: 60px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    position: fixed;
+}
+
+header ul {
+    height: 100%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+header ul li {
+    text-decoration: none;
+    line-height: 60px;
+    padding: 0 10px;
+    color: #366BFF;
+    font-weight: bold;
+}
+
+header ul li:hover {
+    color: #4817CC;
+    cursor: pointer;
+}
+
+/* POSTS */
 #content {
-	max-width: 1000px;
-	margin: 20px auto;
-	font-family: OpenSans;
+    font-family: OpenSans;
+    display: inline-block;
+    top: 0;
+}
+
+#posts_list_div {
+    position: absolute;
+    display: inline-block;
+    overflow: scroll;
+    top: 0;
+    height: 100%;
 }
 
 .post {
-	margin: 5px 0;
+	margin-bottom: 1px;
 	padding: 5px;
 	background-color: #fff;
 	font-weight: lighter;
+}
+
+.post:hover {
+    background-color: #E3EFFF;
+    cursor: pointer;
 }
 
 .post_header * {
 	display: inline-block;
 }
 
-.post_header h1 {
-	font-size: 18px;
-	font-weight: bold;
-	font-style: italic;
+.post_header h3 {
+	font-size: 16px;
+    font-weight: normal;
 	vertical-align: top;
 }
 
 .post_header img {
 	max-width: 200px;
+}
+
+#article_div {
+    position: absolute;
+    display: inline-block;
+    background-color: #fff;
+    width: 700px;
+    height: 100%;
+    right: 0;
+    overflow: scroll;
+    top: 0;
+    border-left: 1px solid #eee;
+    padding: 10px;
+}
+
+#article_content {
+
+}
+
+
+
+form input#submit {
+    display: block;
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border:1px solid #d8d8d8;
+    padding: 10px; 
+    font-weight:bold; 
+    text-align: center; 
+    color: #000000; 
+    background-color: #f4f4f4;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #e5e5e5));
+    background-image: -webkit-linear-gradient(top, #f4f4f4, #e5e5e5);
+    background-image: -moz-linear-gradient(top, #f4f4f4, #e5e5e5);
+    background-image: -ms-linear-gradient(top, #f4f4f4, #e5e5e5);
+    background-image: -o-linear-gradient(top, #f4f4f4, #e5e5e5);
+    background-image: linear-gradient(top, #f4f4f4, #e5e5e5);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f4f4, endColorstr=#e5e5e5);
+}
+
+form input#submit:hover{
+    cursor: pointer;
+    border:1px solid #c1c1c1; 
+    background-color: #dbdbdb;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%, #cccccc));
+    background-image: -webkit-linear-gradient(top, #dbdbdb, #cccccc);
+    background-image: -moz-linear-gradient(top, #dbdbdb, #cccccc);
+    background-image: -ms-linear-gradient(top, #dbdbdb, #cccccc);
+    background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
+    background-image: linear-gradient(top, #dbdbdb, #cccccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
+}
+
+/* Message flashing */
+.flash {
+    background-color: #FBB0B0;
+    padding: 10px;
+    width: 400px;
+}
+
+/* Signup form */
+form input#firstname,
+form input#lastname,
+form input#password {
+    width: 400px;
+    background-color: #fafafa;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    font-size: 1.1em;
+}
+
+form input#password {
+    margin-bottom: 10px;
+}
+
+form label {
+    font-size: 1.2em;
+    font-weight: lighter;
+    display: block;
+    padding: 10px 0;
+}
+
+form .form_header {
+    background-color: #f8f8f8;
 }
