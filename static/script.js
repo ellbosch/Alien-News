@@ -8,9 +8,17 @@ $(function() {
 	}
 
 	function resize_posts_div() {
-		width = $(window).width() - NAMESPACE.article_width;
+		width = $(window).width() - NAMESPACE.article_width - 20;
 		$("#posts_list_div").css('width', width);
 	}
+
+	// function call that runs on page load
+	init();
+
+
+	/****************************************************
+		EVENT HANDLERS
+	****************************************************/
 
 	// window resize events
 	$(window).smartresize(function() {
@@ -25,8 +33,6 @@ $(function() {
 		$("#sidebar").hide("slide");
 	});
 
-	// function call that runs on page load
-	init();
 
 });
 

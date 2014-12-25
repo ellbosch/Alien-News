@@ -105,8 +105,12 @@ header ul li:hover {
 .post {
 	margin-bottom: 1px;
 	padding: 5px;
-	background-color: #fff;
+	/*background-color: #fff;*/
 	font-weight: lighter;
+}
+
+.post.active {
+	background-color: #fff;
 }
 
 .post:hover {
@@ -143,73 +147,4 @@ header ul li:hover {
 
 #article_content {
 
-}
-
-
-
-form input#submit {
-    display: block;
-    -webkit-border-radius: 3px; 
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    border:1px solid #d8d8d8;
-    padding: 10px; 
-    font-weight:bold; 
-    text-align: center; 
-    color: #000000; 
-    background-color: #f4f4f4;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #e5e5e5));
-    background-image: -webkit-linear-gradient(top, #f4f4f4, #e5e5e5);
-    background-image: -moz-linear-gradient(top, #f4f4f4, #e5e5e5);
-    background-image: -ms-linear-gradient(top, #f4f4f4, #e5e5e5);
-    background-image: -o-linear-gradient(top, #f4f4f4, #e5e5e5);
-    background-image: linear-gradient(top, #f4f4f4, #e5e5e5);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f4f4, endColorstr=#e5e5e5);
-}
-
-form input#submit:hover{
-    cursor: pointer;
-    border:1px solid #c1c1c1; 
-    background-color: #dbdbdb;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%, #cccccc));
-    background-image: -webkit-linear-gradient(top, #dbdbdb, #cccccc);
-    background-image: -moz-linear-gradient(top, #dbdbdb, #cccccc);
-    background-image: -ms-linear-gradient(top, #dbdbdb, #cccccc);
-    background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
-    background-image: linear-gradient(top, #dbdbdb, #cccccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
-}
-
-/* Message flashing */
-.flash {
-    background-color: #FBB0B0;
-    padding: 10px;
-    width: 400px;
-}
-
-/* Signup form */
-form input#firstname,
-form input#lastname,
-form input#password {
-    width: 400px;
-    background-color: #fafafa;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    border: 1px solid #cccccc;
-    padding: 5px;
-    font-size: 1.1em;
-}
-
-form input#password {
-    margin-bottom: 10px;
-}
-
-form label {
-    font-size: 1.2em;
-    font-weight: lighter;
-    display: block;
-    padding: 10px 0;
-}
-
-form .form_header {
-    background-color: #f8f8f8;
 }

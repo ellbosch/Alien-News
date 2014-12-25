@@ -10,14 +10,7 @@ class RedditPost():
     def __init__(self, post):
         self.reddit_title = post.title
         self.url = post.url
-
-        # use newspaper module to download article information
-        # article = Article(url=post.url)
-        # article.download()
-        # article.parse()
-
-        # self.article_title = article.title
-        # self.image = article.top_image
+        self.isActive = False
 
 
 class ArticlePost():
@@ -29,6 +22,7 @@ class ArticlePost():
         self.title = article.title
         self.image = article.top_image
         self.text = article.text
+        # self.summary = article.summary
 
 
 def get_useragent():
@@ -47,8 +41,9 @@ def get_reddit_posts(subreddit, n):
 
 @app.route('/')
 def homepage():
-    sub = 'worldnews'
-    posts = get_reddit_posts(sub, 10)
+    sub = 'worldnews+science+technology'
+    posts = get_reddit_posts(sub, 20)
+    posts[0].isActive = True
 
     article = ArticlePost(posts[0].url)
 

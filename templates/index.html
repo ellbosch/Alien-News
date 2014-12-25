@@ -10,6 +10,7 @@
 <body>
 	<div id="content">
 		<div id="posts_list_div">
+		<!--
 			<header>
 				<ul id="posts_header">
 					<li id="sidebar_button">Menu</li>
@@ -17,9 +18,14 @@
 			</header>
 
 			<div class="invisible_space"></div>
+			-->
 
 			{% for post in post_list %}
+			{% if post.isActive %}
+			<div class="post active" data-url="{{ post.url }}">
+			{% else %}
 			<div class="post" data-url="{{ post.url }}">
+			{% endif %}
 				<div class="post_header">
 					<h3>{{ post.reddit_title }}</h3>
 				</div>
@@ -35,16 +41,21 @@
 	</div>
 
 	<!-- SIDEBAR (hides on default) -->
-	<section id="sidebar">
+	<!--<section id="sidebar">
 		<div id="close_button">CLOSE</div>
 		<ul class="menu">
 			<li><a href="{{ url_for('homepage') }}">Home</a></li>
 		</ul>
-	</section>
+	</section>-->
 
 	<script type="text/javascript">
 		// updates what article is viewed
 		$(".post").on('mousedown', function(){
+			// css changes
+			$(".post").removeClass("active");
+			$(this).addClass("active");
+
+			// sends request to flask app to show article content w/o page reload
 			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 			$.getJSON($SCRIPT_ROOT + '/article', {
 		        url: $(this).attr("data-url")
