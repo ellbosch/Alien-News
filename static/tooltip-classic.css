@@ -1,0 +1,85 @@
+/* TOOLTIP STYLESHEET USED FROM CODROPS: http://tympanus.net/codrops/2014/10/07/tooltip-styles-inspiration/ */
+
+.tooltip {
+	display: inline;
+	position: relative;
+	z-index: 999;
+}
+
+/* Trigger text */
+
+.tooltip-item {
+	cursor: pointer;
+	display: inline-block;
+	padding: 0 10px;
+}
+
+/* Gap filler */
+
+.tooltip-item::after {
+	content: '';
+	position: absolute;
+	width: 500px;
+	height: 20px;
+	bottom: 100%;
+	left: 50%;
+	pointer-events: none;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.tooltip:hover .tooltip-item::after {
+	pointer-events: auto;
+}
+
+/* Tooltip */
+
+.tooltip-content {
+	position: absolute;
+	z-index: 9999;
+	width: 500px;
+	left: 50%;
+	margin: 20px 0 20px -140px;
+	top: 100%;
+	text-align: left;
+	line-height: 1.4;
+	box-shadow: -5px -5px 15px rgba(48,54,61,0.2);
+	background: #2a3035;
+	opacity: 0;
+	cursor: default;
+	pointer-events: none;
+	padding: 10px;
+}
+
+.tooltip-effect-1 .tooltip-content {
+	-webkit-transform: translate3d(0,-10px,0);
+	transform: translate3d(0,-10px,0);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+.tooltip:hover .tooltip-content {
+	pointer-events: auto;
+	opacity: 1;
+	-webkit-transform: translate3d(0,0,0) rotate3d(0,0,0,0);
+	transform: translate3d(0,0,0) rotate3d(0,0,0,0);
+}
+
+.tooltip.tooltip-effect-2:hover .tooltip-content {
+	-webkit-transform: perspective(1000px) rotate3d(1,0,0,0deg);
+	transform: perspective(1000px) rotate3d(1,0,0,0deg);
+}
+
+/* Tooltip content*/
+
+.tooltip-text {
+	font-size: 14px;
+	line-height: 1.35;
+	display: block;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: lighter;
+}
+
+.tooltip-effect-5 .tooltip-text {
+	padding: 1.4em;
+}

@@ -1,11 +1,7 @@
-@font-face {
-    font-family: OpenSans;
-    src: url(fonts/Open_Sans);
-}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400);
 
 body {
 	background-color: #eee;
-    font-family: OpenSans;
     margin: 0;
     overflow: hidden;
 }
@@ -24,13 +20,13 @@ header {
 
 header ul {
     height: 100%;
-    display: inline-block;
     padding: 0;
     margin: 0;
 }
 
 header ul li {
 	padding: 0 15px;
+	display: inline-block;
 }
 
 header ul li, header ul li a {
@@ -48,7 +44,7 @@ header ul li:hover a {
 
 /* POSTS */
 #content {
-    font-family: OpenSans;
+    font-family: 'Open Sans', sans-serif;
     display: inline-block;
     top: 0;
 }
@@ -64,7 +60,6 @@ header ul li:hover a {
 .post {
 	margin-bottom: 1px;
 	padding: 5px 10px;
-	font-weight: lighter;
 	background-color: #f8f8f8;
 }
 
@@ -77,18 +72,11 @@ header ul li:hover a {
     cursor: pointer;
 }
 
-.post_header * {
-	display: inline-block;
-}
-
-.post_header h3 {
+.post_header {
 	font-size: 16px;
-    font-weight: normal;
+	font-style: italic;
 	vertical-align: top;
-}
-
-.post_header img {
-	max-width: 200px;
+	padding: 15px 0;
 }
 
 #article_div {

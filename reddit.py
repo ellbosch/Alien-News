@@ -22,12 +22,13 @@ class ArticlePost():
         article = Article(url=url, config=c)
         article.download()
         article.parse()
+        article.nlp()
 
         self.title = article.title
         self.image = article.top_image
         self.text = article.article_html
         self.url = url
-        # self.summary = article.summary
+        self.summary = article.summary
 
 
 def get_useragent():
@@ -64,7 +65,8 @@ def show_article():
     return jsonify(result = {"title": article.title,
                              "text": article.text,
                              "image": article.image,
-                             "url": article.url})
+                             "url": article.url,
+                             "summary": article.summary})
 
 
 if __name__ == '__main__':

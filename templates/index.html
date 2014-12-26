@@ -4,6 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Alien News</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='tooltip-classic.css') }}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
@@ -26,9 +27,7 @@
 			{% else %}
 			<div class="post" data-url="{{ post.url }}">
 			{% endif %}
-				<div class="post_header">
-					<h3>{{ post.reddit_title }}</h3>
-				</div>
+				<div class="post_header">{{ post.reddit_title }}</div>
 			</div>
 			{% endfor %}
 		</div>
@@ -37,6 +36,14 @@
 			<header id="header-article">
 				<ul>
 					<li id="goto-article"><a href="{{ article.url }}">View Article</a></li>
+					<li id="tldr">
+						<span class="tooltip tooltip-effect-1">
+							<span class="tooltip-item">TLDR</span>
+							<span class="tooltip-content clearfix">
+								<span class="tooltip-text" id="tldr-text">{{ article.summary }}</span>
+							</span>
+						</span>
+					</li>
 				</ul>
 			</header>
 			<div class="invisible_space"></div>
@@ -69,10 +76,11 @@
 			$.getJSON($SCRIPT_ROOT + '/article', {
 		        url: $(this).attr("data-url")
 		    }, function(data) {
-		    	$("#article-title").html(data.result['title']);
 		    	$("#article-image").attr("src", data.result['image']);
-		    	$("#article-text").html(data.result['text']);
 		    	$("#goto-article a").attr("href", data.result['url']);
+		    	$("#article-title").html(data.result['title']);
+		    	$("#article-text").html(data.result['text']);
+		    	$("#tldr-text").html(data.result['summary']);
 		    });
 		});
 	</script>
