@@ -59,7 +59,6 @@ def homepage():
 @app.route('/article/')
 def show_article():
     url = str(request.args['url'])
-
     article = ArticlePost(url)
 
     return jsonify(result = {"title": article.title,

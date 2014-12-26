@@ -53,6 +53,10 @@
 				<img id="article-image" src="{{ article.image }}">
 				<div id="article-text">{{ article.text|safe }}</div>
 			</div>
+
+			<div id="error_display">
+				<h2>Could not load article!</h2>
+			</div>
 		</div>
 	</div>
 
@@ -67,6 +71,9 @@
 	<script type="text/javascript">
 		// updates what article is viewed
 		$(".post").on('mousedown', function(){
+			// loading screen
+			$("article_div #loading-screen").show();
+
 			// css changes
 			$(".post").removeClass("active");
 			$(this).addClass("active");
@@ -76,12 +83,18 @@
 			$.getJSON($SCRIPT_ROOT + '/article', {
 		        url: $(this).attr("data-url")
 		    }, function(data) {
+		    	$("#error_display").hide();
 		    	$("#article-image").attr("src", data.result['image']);
 		    	$("#goto-article a").attr("href", data.result['url']);
 		    	$("#article-title").html(data.result['title']);
 		    	$("#article-text").html(data.result['text']);
 		    	$("#tldr-text").html(data.result['summary']);
+		    }).fail(function(data){
+		    	$("#error_display").show();
 		    });
+
+		    // scroll window to top and hide loading screen
+		    $("#article_div").scrollTop(0);
 		});
 	</script>
 </body>
