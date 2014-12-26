@@ -1,6 +1,7 @@
-from newspaper import Article
+from newspaper import Article, Config
 from flask import Flask, render_template, request, jsonify
 import praw
+import lxml.html.clean
 
 
 app = Flask(__name__)
@@ -15,18 +16,22 @@ class RedditPost():
 
 class ArticlePost():
     def __init__(self, url):
-        article = Article(url=url)
+        c = Config()
+        c.keep_article_html = True
+
+        article = Article(url=url, config=c)
         article.download()
         article.parse()
 
         self.title = article.title
         self.image = article.top_image
-        self.text = article.text
+        self.text = article.article_html
+        self.url = url
         # self.summary = article.summary
 
 
 def get_useragent():
-    return praw.Reddit(user_agent='Alien News/1.0 by ellbosch')
+    return praw.Reddit(user_agent='Reddit Reader/1.0 by ellbosch')
 
 
 def get_reddit_posts(subreddit, n):
@@ -41,7 +46,7 @@ def get_reddit_posts(subreddit, n):
 
 @app.route('/')
 def homepage():
-    sub = 'worldnews+science+technology'
+    sub = 'worldnews+science+technology+news'
     posts = get_reddit_posts(sub, 20)
     posts[0].isActive = True
 
@@ -57,7 +62,9 @@ def show_article():
     article = ArticlePost(url)
 
     return jsonify(result = {"title": article.title,
-                             "text": article.text})
+                             "text": article.text,
+                             "image": article.image,
+                             "url": article.url})
 
 
 if __name__ == '__main__':

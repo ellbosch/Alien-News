@@ -32,10 +32,19 @@
 			</div>
 			{% endfor %}
 		</div>
+
 		<div id="article_div">
-			<div id="article_content">
-				<h2>{{ article.title }}</h2>
-				<div>{{ article.text }}</div>
+			<header id="header-article">
+				<ul>
+					<li id="goto-article"><a href="{{ article.url }}">View Article</a></li>
+				</ul>
+			</header>
+			<div class="invisible_space"></div>
+
+			<div id="article">
+				<h2 id="article-title">{{ article.title }}</h2>
+				<img id="article-image" src="{{ article.image }}">
+				<div id="article-text">{{ article.text|safe }}</div>
 			</div>
 		</div>
 	</div>
@@ -60,9 +69,10 @@
 			$.getJSON($SCRIPT_ROOT + '/article', {
 		        url: $(this).attr("data-url")
 		    }, function(data) {
-		    	var header = "<h2>" + data.result['title'] + "</h2>"
-		    	var text = "<div>" + data.result['text'] + "</div>"
-		    	$("#article_div").html(header + text);
+		    	$("#article-title").html(data.result['title']);
+		    	$("#article-image").attr("src", data.result['image']);
+		    	$("#article-text").html(data.result['text']);
+		    	$("#goto-article a").attr("href", data.result['url']);
 		    });
 		});
 	</script>
