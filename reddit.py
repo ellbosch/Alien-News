@@ -2,6 +2,9 @@ from newspaper import Article, Config
 from flask import Flask, render_template, request, jsonify
 import praw
 import lxml.html.clean
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 
 app = Flask(__name__)
