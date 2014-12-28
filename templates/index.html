@@ -31,19 +31,19 @@
 				<div class="post_header">{{ post.reddit_title }}</div>
 				{% if post.subreddit == 'worldnews' %}
 				<div class="post_subreddit worldnews">
-					<i class="fa fa-globe"></i><span>r/worldnews</span>
+					<a href="https://www.reddit.com/r/worldnews"><i class="fa fa-globe"></i><span>r/worldnews</span></a>
 				</div>
 				{% elif post.subreddit == 'news' %}
 				<div class="post_subreddit news">
-					<i class="fa fa-newspaper-o"></i><span>r/news</span>
+					<a href="https://www.reddit.com/r/news"><i class="fa fa-newspaper-o"></i><span>r/news</span></a>
 				</div>
 				{% elif post.subreddit == 'science' %}
 				<div class="post_subreddit science">
-					<i class="fa fa-flask"></i><span>r/science</span>
+					<a href="https://www.reddit.com/r/science"><i class="fa fa-flask"></i><span>r/science</span></a>
 				</div>
 				{% elif post.subreddit == 'technology' %}
 				<div class="post_subreddit technology">
-					<i class="fa fa-rocket"></i><span>r/technology</span>
+					<a href="https://www.reddit.com/r/technology"><i class="fa fa-rocket"></i><span>r/technology</span></a>
 				</div>
 				{% endif %}
 			</div>

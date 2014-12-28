@@ -76,27 +76,37 @@ header ul li:hover a {
 .post_header {
 	font-size: 16px;
 	vertical-align: top;
+	font-style: italic;
 }
 
 .post_subreddit {
 	margin-top: 10px;
+	font-weight: lighter;
 }
 
-.post_subreddit.worldnews {
+.post_subreddit a {
+	text-decoration: none;
+}
+
+.post_subreddit a:hover {
+	font-weight: normal;
+}
+
+.post_subreddit.worldnews a {
 	color: #4183D7;
 }
 
-.post_subreddit.news {
+.post_subreddit.news a {
 	color: #EB974E;
 
 }
 
-.post_subreddit.science {
+.post_subreddit.science a {
 	color: #3FC380;
 
 }
 
-.post_subreddit.technology {
+.post_subreddit.technology a {
 	color: #D64541;
 }
 
