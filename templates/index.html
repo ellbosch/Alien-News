@@ -5,6 +5,7 @@
 	<title>Alien News</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='tooltip-classic.css') }}">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
@@ -28,6 +29,23 @@
 			<div class="post" data-url="{{ post.url }}">
 			{% endif %}
 				<div class="post_header">{{ post.reddit_title }}</div>
+				{% if post.subreddit == 'worldnews' %}
+				<div class="post_subreddit worldnews">
+					<i class="fa fa-globe"></i><span>r/worldnews</span>
+				</div>
+				{% elif post.subreddit == 'news' %}
+				<div class="post_subreddit news">
+					<i class="fa fa-newspaper-o"></i><span>r/news</span>
+				</div>
+				{% elif post.subreddit == 'science' %}
+				<div class="post_subreddit science">
+					<i class="fa fa-flask"></i><span>r/science</span>
+				</div>
+				{% elif post.subreddit == 'technology' %}
+				<div class="post_subreddit technology">
+					<i class="fa fa-rocket"></i><span>r/technology</span>
+				</div>
+				{% endif %}
 			</div>
 			{% endfor %}
 		</div>

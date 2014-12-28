@@ -59,8 +59,9 @@ header ul li:hover a {
 
 .post {
 	margin-bottom: 1px;
-	padding: 5px 10px;
+	padding: 20px 10px;
 	background-color: #f8f8f8;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .post.active {
@@ -74,9 +75,33 @@ header ul li:hover a {
 
 .post_header {
 	font-size: 16px;
-	font-style: italic;
 	vertical-align: top;
-	padding: 15px 0;
+}
+
+.post_subreddit {
+	margin-top: 10px;
+}
+
+.post_subreddit.worldnews {
+	color: #4183D7;
+}
+
+.post_subreddit.news {
+	color: #EB974E;
+
+}
+
+.post_subreddit.science {
+	color: #3FC380;
+
+}
+
+.post_subreddit.technology {
+	color: #D64541;
+}
+
+.post_subreddit span {
+	margin-left: 5px;
 }
 
 #article_div {
@@ -88,7 +113,7 @@ header ul li:hover a {
     right: 0;
     overflow: scroll;
     top: 0;
-    border-left: 1px solid #eee;
+    border-left: 2px solid #eee;
 }
 
 #article_div #article {

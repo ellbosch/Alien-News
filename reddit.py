@@ -56,7 +56,7 @@ def get_reddit_posts(subreddit, n):
 @app.route('/')
 def homepage():
     sub = 'worldnews+science+technology+news'
-    posts = get_reddit_posts(sub, 20)
+    posts = get_reddit_posts(sub, 10)
     posts[0].isActive = True
 
     article = ArticlePost(posts[0].url)
