@@ -14,6 +14,7 @@ class RedditPost():
     def __init__(self, post):
         self.reddit_title = post.title
         self.url = post.url
+        self.subreddit = str(post.subreddit)
         self.isActive = False
 
 
@@ -25,13 +26,17 @@ class ArticlePost():
         article = Article(url=url, config=c)
         article.download()
         article.parse()
-        article.nlp()
+        
+        try:
+            article.nlp()
+            self.summary = article.summary
+        except Exception, e:
+            self.summary = "Summary could not be created."
 
         self.title = article.title
         self.image = article.top_image
         self.text = article.article_html
         self.url = url
-        self.summary = article.summary
 
 
 def get_useragent():
