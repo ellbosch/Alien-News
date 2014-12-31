@@ -99,8 +99,8 @@
 			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 			$.getJSON($SCRIPT_ROOT + '/article', {
 		        url: $(this).attr("data-url")
-		    }, function(data) {
-		    	console.log("HI!!!!")
+		    }, function(data, status, xhr) {
+		    	console.log("SUCCESS " + xhr.status);
 
 		    	$("#error_display").hide();
 		    	$("#article-image").attr("src", data.result['image']);
@@ -108,7 +108,8 @@
 		    	$("#article-title").html(data.result['title']);
 		    	$("#article-text").html(data.result['text']);
 		    	$("#tldr-text").html(data.result['summary']);
-		    }).fail(function(data){
+		    }).fail(function(data, status, xhr){
+		    	console.log("FAILED AT: " + xhr.status);
 		    	$("#error_display").show();
 		    });
 
