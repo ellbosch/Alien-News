@@ -112,6 +112,7 @@
 		    	$("#tldr-text").html(data.result['summary']);
 		    }).fail(function(data, status, xhr){
 		    	console.log("FAILED AT: " + xhr.status);
+		    	console.log("CONTENT: " data.result['text']);
 		    	$("#error_display").show();
 		    });
 
