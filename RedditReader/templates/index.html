@@ -89,8 +89,6 @@
 	<script type="text/javascript">
 		// updates what article is viewed
 		$(".post").on('mousedown', function(){
-			console.log("MOUSE DOWN EVENT ON POST");
-
 			// css changes
 			$(".post").removeClass("active");
 			$(this).addClass("active");
@@ -100,7 +98,7 @@
 
 			// was: $.getJSON($SCRIPT_ROOT + '/article', {
 			$.getJSON('/article', {
-		        url: $(this).attr("data-url")
+		        url: $(this).attr("data-url") + "&callback=?"
 		    }, function(data, status, xhr) {
 		    	console.log("SUCCESS " + xhr.status);
 
