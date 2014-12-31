@@ -97,6 +97,8 @@
 
 			// sends request to flask app to show article content w/o page reload
 			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+			console.log("SCRIPT ROOT: " + $SCRIPT_ROOT);
+
 			$.getJSON($SCRIPT_ROOT + '/article', {
 		        url: $(this).attr("data-url")
 		    }, function(data, status, xhr) {
