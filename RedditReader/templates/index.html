@@ -96,10 +96,10 @@
 			$(this).addClass("active");
 
 			// sends request to flask app to show article content w/o page reload
-			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-			console.log("SCRIPT ROOT: " + $SCRIPT_ROOT);
+			// $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
-			$.getJSON($SCRIPT_ROOT + '/article', {
+			// was: $.getJSON($SCRIPT_ROOT + '/article', {
+			$.getJSON('https://young-caverns-5804.herokuapp.com/article', {
 		        url: $(this).attr("data-url")
 		    }, function(data, status, xhr) {
 		    	console.log("SUCCESS " + xhr.status);
