@@ -99,7 +99,7 @@
 			// $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
 			// was: $.getJSON($SCRIPT_ROOT + '/article', {
-			$.getJSON('https://young-caverns-5804.herokuapp.com/article', {
+			$.getJSON('/article', {
 		        url: $(this).attr("data-url")
 		    }, function(data, status, xhr) {
 		    	console.log("SUCCESS " + xhr.status);
