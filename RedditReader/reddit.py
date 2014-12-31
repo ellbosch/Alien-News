@@ -1,13 +1,9 @@
 from newspaper import Article, Config
-from flask import Flask, render_template, request, jsonify
 import praw
 import lxml.html.clean
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
-
-
-app = Flask(__name__)
 
 
 class RedditPost():
@@ -31,7 +27,7 @@ class ArticlePost():
             article.nlp()
             self.summary = article.summary
         except Exception, e:
-            self.summary = "Summary could not be created."
+            self.summary = "Summary not available!"
 
         self.title = article.title
         self.image = article.top_image
@@ -51,30 +47,3 @@ def get_reddit_posts(subreddit, n):
         posts.append(post)
 
     return posts
-
-
-@app.route('/')
-def homepage():
-    sub = 'worldnews+science+technology+news'
-    posts = get_reddit_posts(sub, 10)
-    posts[0].isActive = True
-
-    article = ArticlePost(posts[0].url)
-
-    return render_template('index.html', post_list=posts, article=article) 
-
-
-@app.route('/article/')
-def show_article():
-    url = str(request.args['url'])
-    article = ArticlePost(url)
-
-    return jsonify(result = {"title": article.title,
-                             "text": article.text,
-                             "image": article.image,
-                             "url": article.url,
-                             "summary": article.summary})
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
