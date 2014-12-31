@@ -1,1 +1,1 @@
-web: gunicorn RedditReader:app --log-file=-
+web: python runserver.py
