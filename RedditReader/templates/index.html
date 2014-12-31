@@ -96,8 +96,10 @@
 			// sends request to flask app to show article content w/o page reload
 			// $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
+			$.ajaxSetup({ cache: false });
+
 			// was: $.getJSON($SCRIPT_ROOT + '/article', {
-			$.getJSON('/article&callback=?', {
+			$.getJSON('/article', {
 		        url: $(this).attr("data-url")
 		    }, function(data, status, xhr) {
 		    	console.log("SUCCESS " + xhr.status);
