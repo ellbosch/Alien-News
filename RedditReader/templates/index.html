@@ -97,44 +97,23 @@
 			// sends request to flask app to show article content w/o page reload
 			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
-			// was: $.getJSON($SCRIPT_ROOT + '/article', {
-			// $.getJSON('/article', {
-		 //        url: $(this).attr("data-url")
-		 //    }, function(data, status, xhr) {
-		 //    	console.log("SUCCESS " + xhr.status);
-
-		 //    	$("#error_display").hide();
-		 //    	$("#article-image").attr("src", data.result['image']);
-		 //    	$("#goto-article a").attr("href", data.result['url']);
-		 //    	$("#article-title").html(data.result['title']);
-		 //    	$("#article-text").html(data.result['text']);
-		 //    	$("#tldr-text").html(data.result['summary']);
-		 //    }).fail(function(data, status, xhr){
-		 //    	console.log("FAILED AT: " + xhr.status);
-		 //    	console.log("STATUS: " + status);
-		 //    	$("#error_display").show();
-		 //    });
-
+			// get request to get article content from server
 			$.ajax({
 				type: "GET",
 				url: $SCRIPT_ROOT + "/article",
-				// contentType: "application/json; charset=utf-8",
 				contentType: "application/javascript",
 				dataType: "jsonp",
 				data: {url: $(this).attr("data-url")},
 				crossDomain: true
-				// succcess: function(data) {
-			 //    },
-			 //    error: function(jqxhr, status, error) {
-			 //    	console.log("STATUS" + status);
-			 //    	console.log("ERROR: " + error);
-			 //    }
 			}).done(function(data) {
+		    	$("#error_display").hide();
 				$("#article-image").attr("src", data.result['image']);
 		    	$("#goto-article a").attr("href", data.result['url']);
 		    	$("#article-title").html(data.result['title']);
 		    	$("#article-text").html(data.result['text']);
 		    	$("#tldr-text").html(data.result['summary']);				
+			}).fail(function() {
+				$("#error_display").show();
 			});
 
 		    // scroll window to top and hide loading screen

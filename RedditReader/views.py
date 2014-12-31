@@ -1,11 +1,9 @@
 from RedditReader import app
-from flask import render_template, request, jsonify
-import reddit
-
-# JSONP support
-import json
+from flask import render_template, request, jsonify, redirect, current_app
 from functools import wraps
-from flask import redirect, current_app
+import reddit
+import json
+
 
 def support_jsonp(f):
     """Wraps JSONified output for JSONP"""
@@ -37,8 +35,6 @@ def homepage():
 def show_article():
     url = str(request.args['url'])
     article = reddit.ArticlePost(url)
-
-    print "BAM:" + article.text
 
     return jsonify(result = {"title": article.title,
                              "text": article.text,
