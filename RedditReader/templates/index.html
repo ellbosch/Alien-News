@@ -97,8 +97,8 @@
 			// $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
 			// was: $.getJSON($SCRIPT_ROOT + '/article', {
-			$.getJSON('/article', {
-		        url: $(this).attr("data-url") + "&callback=?"
+			$.getJSON('/article&callback=?', {
+		        url: $(this).attr("data-url")
 		    }, function(data, status, xhr) {
 		    	console.log("SUCCESS " + xhr.status);
 
