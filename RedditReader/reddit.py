@@ -25,7 +25,11 @@ class ArticlePost():
         
         try:
             article.nlp()
-            self.summary = article.summary
+            summary = article.summary
+            if summary == "":
+                self.summary = "Summary not available!"
+            else:
+                self.summary = summary
         except Exception, e:
             self.summary = "Summary not available!"
 

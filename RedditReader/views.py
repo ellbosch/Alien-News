@@ -18,10 +18,9 @@ def support_jsonp(f):
     return decorated_function
 
 
-
 @app.route('/')
 def homepage():
-    sub = 'worldnews+science+technology+news'
+    sub = 'worldnews+science+tech+news'
     posts = reddit.get_reddit_posts(sub, 10)
     posts[0].isActive = True
 
