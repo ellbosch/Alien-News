@@ -5,11 +5,19 @@ $(function() {
 
 	function init() {
 		resize_posts_div();
+		resize_article_div();
 	}
 
 	function resize_posts_div() {
 		width = $(window).width() - NAMESPACE.article_width;
+		height = $(window).height() - 50;
 		$("#posts_list_div").css('width', width);
+		$("#posts_list_div #all_posts").height(height);
+	}
+
+	function resize_article_div() {
+		height = $(window).height() - 50;
+		$("#article_div #article").height(height);
 	}
 
 	// function call that runs on page load
@@ -22,7 +30,7 @@ $(function() {
 
 	// window resize events
 	$(window).smartresize(function() {
-		resize_posts_div();
+		init();
 	});
 
 	// toggles sidebar

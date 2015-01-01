@@ -140,14 +140,15 @@ header ul li:hover a {
     height: 100%;
     right: 0;
     top: 0;
+    bottom: 0;
     border-left: 2px solid #eee;
 }
 
 #article_div #article {
     padding: 10px 15px;
     overflow: scroll;
-    height: 100%;
     -webkit-overflow-scrolling: touch;
+    height: 100%;
 }
 
 #article_div #article #article-title {
