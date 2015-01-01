@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400);
 
 body {
 	background-color: #eee;
@@ -47,7 +47,7 @@ header ul li:hover a {
 }
 
 #header-posts ul li {
-
+    color: #2850BF;
 }
 
 .fa {
@@ -66,9 +66,14 @@ header ul li:hover a {
 #posts_list_div {
     position: absolute;
     display: inline-block;
-    overflow: scroll;
     top: 0;
     height: 100%;
+}
+
+#posts_list_div #all_posts {
+    overflow: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 .post {
@@ -134,13 +139,19 @@ header ul li:hover a {
     width: 700px;
     height: 100%;
     right: 0;
-    overflow: scroll;
     top: 0;
     border-left: 2px solid #eee;
 }
 
 #article_div #article {
-	margin: 10px 15px;
+    padding: 10px 15px;
+    overflow: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+#article_div #article #article-title {
+    margin-top: 0;
 }
 
 #article_div #article #article-image {

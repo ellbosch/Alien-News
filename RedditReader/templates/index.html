@@ -25,33 +25,35 @@
 				</ul>
 			</header>
 			<div class="invisible_space"></div>
-			
-			{% for post in post_list %}
-			{% if post.isActive %}
-			<div class="post active" data-url="{{ post.url }}">
-			{% else %}
-			<div class="post" data-url="{{ post.url }}">
-			{% endif %}
-				<div class="post_header">{{ post.reddit_title }}</div>
-				{% if post.subreddit == 'worldnews' %}
-				<div class="post_subreddit worldnews">
-					<a href="https://www.reddit.com/r/worldnews"><i class="fa fa-globe"></i><span>r/worldnews</span></a>
-				</div>
-				{% elif post.subreddit == 'news' %}
-				<div class="post_subreddit news">
-					<a href="https://www.reddit.com/r/news"><i class="fa fa-newspaper-o"></i><span>r/news</span></a>
-				</div>
-				{% elif post.subreddit == 'science' %}
-				<div class="post_subreddit science">
-					<a href="https://www.reddit.com/r/science"><i class="fa fa-flask"></i><span>r/science</span></a>
-				</div>
-				{% elif post.subreddit == 'tech' %}
-				<div class="post_subreddit tech">
-					<a href="https://www.reddit.com/r/tech"><i class="fa fa-rocket"></i><span>r/tech</span></a>
-				</div>
+
+			<div id="all_posts">
+				{% for post in post_list %}
+				{% if post.isActive %}
+				<div class="post active" data-url="{{ post.url }}">
+				{% else %}
+				<div class="post" data-url="{{ post.url }}">
 				{% endif %}
+					<div class="post_header">{{ post.reddit_title }}</div>
+					{% if post.subreddit == 'worldnews' %}
+					<div class="post_subreddit worldnews">
+						<a href="https://www.reddit.com/r/worldnews"><i class="fa fa-globe"></i><span>r/worldnews</span></a>
+					</div>
+					{% elif post.subreddit == 'news' %}
+					<div class="post_subreddit news">
+						<a href="https://www.reddit.com/r/news"><i class="fa fa-newspaper-o"></i><span>r/news</span></a>
+					</div>
+					{% elif post.subreddit == 'science' %}
+					<div class="post_subreddit science">
+						<a href="https://www.reddit.com/r/science"><i class="fa fa-flask"></i><span>r/science</span></a>
+					</div>
+					{% elif post.subreddit == 'tech' %}
+					<div class="post_subreddit tech">
+						<a href="https://www.reddit.com/r/tech"><i class="fa fa-rocket"></i><span>r/tech</span></a>
+					</div>
+					{% endif %}
+				</div>
+				{% endfor %}
 			</div>
-			{% endfor %}
 		</div>
 
 		<div id="article_div">
@@ -133,7 +135,7 @@
 		    	$("#goto-article a").attr("href", data.result['url']);
 		    	$("#article-title").html(data.result['title']);
 		    	$("#article-text").html(data.result['text']);
-		    	$("#tldr-text").html(data.result['summary']);				
+		    	$("#tldr-text").html(data.result['summary']);
 			}).fail(function() {
 				$("#loading-screen").hide();
 				$("#error_display").show();
