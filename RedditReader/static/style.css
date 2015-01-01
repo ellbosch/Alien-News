@@ -15,7 +15,7 @@ header {
     width: 100%;
     background-color: rgba(255, 255, 255, 0.98);
     position: fixed;
-    border-bottom: 1px solid #f9f9f9
+    border-bottom: 1px solid rgba(230, 230, 230, 0.5);
 }
 
 header ul {
@@ -33,7 +33,6 @@ header ul li, header ul li a {
     text-decoration: none;
     list-style-type: none;
     color: #366BFF;
-    font-weight: bold;
     line-height: 50px;
 }
 
@@ -42,7 +41,22 @@ header ul li:hover a {
     cursor: pointer;
 }
 
+#header-posts {
+    background-color: rgba(249, 249, 249, 0.98);
+    border-bottom: 1px solid rgba(220, 220, 220, 0.5);
+}
+
+#header-posts ul li {
+
+}
+
+.fa {
+    padding-right: 5px;
+}
+
+
 /* POSTS */
+
 #content {
     font-family: 'Open Sans', sans-serif;
     display: inline-block;
@@ -110,9 +124,8 @@ header ul li:hover a {
 	color: #D64541;
 }
 
-.post_subreddit span {
-	margin-left: 5px;
-}
+
+/* ARTICLE DIV */
 
 #article_div {
     position: absolute;
@@ -134,14 +147,22 @@ header ul li:hover a {
 	max-width: 98%;
 }
 
-#article_div #error_display {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: none;
-	top: 0;
+.cover_article-div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    padding-left: 15px;
 	background-color: #fff;
-	padding-left: 15px;
+}
+
+#article_div #loading-screen {
+    background-color: #fff;
+    display: none;
+}
+
+#article_div #error_display {
+    display: none;
 	font-style: italic;
 }
 

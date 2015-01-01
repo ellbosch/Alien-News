@@ -5,6 +5,7 @@
 	<title>Reddit Reader</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='tooltip-classic.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loading-spinner.css') }}">
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
@@ -13,16 +14,18 @@
 <body>
 	<div id="content">
 		<div id="posts_list_div">
-		<!--
-			<header>
-				<ul id="posts_header">
-					<li id="sidebar_button">Menu</li>
+		
+			<header id="header-posts">
+				<ul>
+					<!-- <li id="sidebar_button">Menu</li> -->
+					<li>
+						<i class="fa fa-filter"></i>
+						<span>Filter</span>
+					</li>
 				</ul>
 			</header>
-
 			<div class="invisible_space"></div>
-			-->
-
+			
 			{% for post in post_list %}
 			{% if post.isActive %}
 			<div class="post active" data-url="{{ post.url }}">
@@ -54,9 +57,15 @@
 		<div id="article_div">
 			<header id="header-article">
 				<ul>
-					<li id="goto-article"><a href="{{ article.url }}">View Article</a></li>
+					<li id="goto-article">
+						<a href="{{ article.url }}">
+							<i class="fa fa-share"></i>
+							<span>View Article</span>
+						</a>
+					</li>
 					<li id="tldr">
 						<span class="tooltip tooltip-effect-1">
+							<i class="fa fa-book"></i>
 							<span class="tooltip-item">TLDR</span>
 							<span class="tooltip-content clearfix">
 								<span class="tooltip-text" id="tldr-text">{{ article.summary }}</span>
@@ -73,7 +82,16 @@
 				<div id="article-text">{{ article.text|safe }}</div>
 			</div>
 
-			<div id="error_display">
+			<!-- LOADING SPINNER: from http://codepen.io/cmslewis/pen/vosDj -->
+			<div id="loading-screen" class="cover_article-div">
+				<div class="loading-spinner">
+					<div class="dot dotOne"></div>
+					<div class="dot dotTwo"></div>
+					<div class="dot dotThree"></div>
+				</div>
+			</div>
+
+			<div id="error_display" class="cover_article-div">
 				<h2>Could not load article!</h2>
 			</div>
 		</div>
@@ -90,7 +108,10 @@
 	<script type="text/javascript">
 		// updates what article is viewed
 		$(".post").on('mousedown', function(){
-			// css changes
+			// show loading screen before ajax request completes
+			$("#loading-screen").show();
+
+			// css changes to active post
 			$(".post").removeClass("active");
 			$(this).addClass("active");
 
@@ -106,6 +127,7 @@
 				data: {url: $(this).attr("data-url")},
 				crossDomain: true
 			}).done(function(data) {
+				$("#loading-screen").hide();
 		    	$("#error_display").hide();
 				$("#article-image").attr("src", data.result['image']);
 		    	$("#goto-article a").attr("href", data.result['url']);
@@ -113,6 +135,7 @@
 		    	$("#article-text").html(data.result['text']);
 		    	$("#tldr-text").html(data.result['summary']);				
 			}).fail(function() {
+				$("#loading-screen").hide();
 				$("#error_display").show();
 			});
 
