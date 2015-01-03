@@ -53,7 +53,7 @@ header ul li:hover a {
 }
 
 #logo-img {
-    max-height: 70%;
+    height: 37px;
     vertical-align: middle;
     margin-left: -5px;
 }
@@ -246,4 +246,19 @@ header ul li:hover a {
 
 .menu li a:hover {
     color: #4817CC;
+}
+
+
+@media (max-width: 970px) {
+    header ul li {
+        padding: 0 10px;
+    }
+
+    #posts_list_div #all_posts .post {
+        padding: 20px 10px;
+    }
+
+    #article_div #article {
+        padding: 10px 10px;
+    }
 }

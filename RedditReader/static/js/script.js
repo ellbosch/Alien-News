@@ -1,15 +1,23 @@
 $(function() {
 
 	function resize_columns() {
-		if ($(window).width() < 1200) {
-			posts_width = $(window).width() - 700;
+		// set widths
+		var window_width = $(window).width();
+		if (window_width < 970) {
+			article_width = window_width - 270;
+			$("#all_posts").width(270);
+			$("#article_div").width(article_width);
+		} else if (window_width < 1200) {
+			posts_width = window_width - 700;
 			$("#all_posts").width(posts_width);
 			$("#article_div").width(700);
 		} else {
-			article_width = $(window).width() - 500;
+			article_width = window_width - 500;
 			$("#all_posts").width(500);
 			$("#article_div").width(article_width);
 		}
+
+		// set heights
 		height = $(window).height() - 50;
 		$("#posts_list_div .scroll-container").height(height);
 		$("#article_div .scroll-container").height(height);
@@ -35,8 +43,6 @@ $(function() {
 	$("#close_button").click(function() {
 		$("#sidebar").hide("slide");
 	});
-
-
 });
 
 
