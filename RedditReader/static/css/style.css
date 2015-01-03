@@ -51,6 +51,12 @@ header ul li:hover a {
     color: #2850BF;
 }
 
+#logo-img {
+    max-height: 70%;
+    vertical-align: middle;
+    margin-left: -5px;
+}
+
 .fa {
     padding-right: 5px;
 }
