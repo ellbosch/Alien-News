@@ -26,33 +26,36 @@
 			</header>
 			<div class="invisible_space"></div>
 
-			<div id="all_posts">
-				{% for post in post_list %}
-				{% if post.isActive %}
-				<div class="post active" data-url="{{ post.url }}">
-				{% else %}
-				<div class="post" data-url="{{ post.url }}">
-				{% endif %}
-					<div class="post_header">{{ post.reddit_title }}</div>
-					{% if post.subreddit == 'worldnews' %}
-					<div class="post_subreddit worldnews">
-						<a href="https://www.reddit.com/r/worldnews"><i class="fa fa-globe"></i><span>r/worldnews</span></a>
-					</div>
-					{% elif post.subreddit == 'news' %}
-					<div class="post_subreddit news">
-						<a href="https://www.reddit.com/r/news"><i class="fa fa-newspaper-o"></i><span>r/news</span></a>
-					</div>
-					{% elif post.subreddit == 'science' %}
-					<div class="post_subreddit science">
-						<a href="https://www.reddit.com/r/science"><i class="fa fa-flask"></i><span>r/science</span></a>
-					</div>
-					{% elif post.subreddit == 'tech' %}
-					<div class="post_subreddit tech">
-						<a href="https://www.reddit.com/r/tech"><i class="fa fa-rocket"></i><span>r/tech</span></a>
-					</div>
+			<div class="scroll-container">
+				<ul id="all_posts" class="infinite-container">
+					{% for post in post_list %}
+					{% if post.isActive %}
+					<li class="post active infinite-item" data-url="{{ post.url }}">
+					{% else %}
+					<li class="post infinite-item" data-url="{{ post.url }}">
 					{% endif %}
-				</div>
-				{% endfor %}
+						<div class="post_header">{{ post.reddit_title }}</div>
+						{% if post.subreddit == 'worldnews' %}
+						<div class="post_subreddit worldnews">
+							<a href="https://www.reddit.com/r/worldnews"><i class="fa fa-globe"></i><span>r/worldnews</span></a>
+						</div>
+						{% elif post.subreddit == 'news' %}
+						<div class="post_subreddit news">
+							<a href="https://www.reddit.com/r/news"><i class="fa fa-newspaper-o"></i><span>r/news</span></a>
+						</div>
+						{% elif post.subreddit == 'science' %}
+						<div class="post_subreddit science">
+							<a href="https://www.reddit.com/r/science"><i class="fa fa-flask"></i><span>r/science</span></a>
+						</div>
+						{% elif post.subreddit == 'tech' %}
+						<div class="post_subreddit tech">
+							<a href="https://www.reddit.com/r/tech"><i class="fa fa-rocket"></i><span>r/tech</span></a>
+						</div>
+						{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
+				<div id="load-more-posts"></div>
 			</div>
 		</div>
 
@@ -78,23 +81,25 @@
 			</header>
 			<div class="invisible_space"></div>
 
-			<div id="article">
-				<h2 id="article-title">{{ article.title }}</h2>
-				<img id="article-image" src="{{ article.image }}">
-				<div id="article-text">{{ article.text|safe }}</div>
-			</div>
-
-			<!-- LOADING SPINNER: from http://codepen.io/cmslewis/pen/vosDj -->
-			<div id="loading-screen" class="cover_article-div">
-				<div class="loading-spinner">
-					<div class="dot dotOne"></div>
-					<div class="dot dotTwo"></div>
-					<div class="dot dotThree"></div>
+			<div class="scroll-container">
+				<div id="article">
+					<h2 id="article-title">{{ article.title }}</h2>
+					<img id="article-image" src="{{ article.image }}">
+					<div id="article-text">{{ article.text|safe }}</div>
 				</div>
-			</div>
 
-			<div id="error_display" class="cover_article-div">
-				<h2>Could not load article!</h2>
+				<!-- LOADING SPINNER: from http://codepen.io/cmslewis/pen/vosDj -->
+				<div id="loading-screen" class="cover_article-div">
+					<div class="loading-spinner">
+						<div class="dot dotOne"></div>
+						<div class="dot dotTwo"></div>
+						<div class="dot dotThree"></div>
+					</div>
+				</div>
+
+				<div id="error_display" class="cover_article-div">
+					<h2>Could not load article!</h2>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -107,18 +112,31 @@
 		</ul>
 	</section>-->
 
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.waypoints.min.js') }}"></script>
 	<script type="text/javascript">
+		$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+		var waypoints;
+
+		// create waypoint for loading more posts
+		function create_waypoint() {
+			waypoints = $("#load-more-posts").waypoint({
+				handler: function() {
+					append_posts();
+				},
+				offset: 'bottom-in-view',
+				context: $("#posts_list_div .scroll-container")
+			})
+		}
+
 		// updates what article is viewed
-		$(".post").on('mousedown', function(){
+		$(document).on('click', '.post', function() {
 			// show loading screen before ajax request completes
 			$("#loading-screen").show();
 
 			// css changes to active post
 			$(".post").removeClass("active");
 			$(this).addClass("active");
-
-			// sends request to flask app to show article content w/o page reload
-			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
 			// get request to get article content from server
 			$.ajax({
@@ -144,6 +162,61 @@
 		    // scroll window to top and hide loading screen
 		    $("#article_div").scrollTop(0);
 		});
+
+		// function call that makes gets more posts
+		function append_posts() {
+			$.ajax({
+				type: "GET",
+				url: $SCRIPT_ROOT + "/load-more",
+				contentType: "application/javascript",
+				dataType: "jsonp",
+				crossDomain: true
+			}).done(function(data) {
+				// store scrollTop value
+				pos = $("#posts_list_div .scroll-container").scrollTop();
+
+				// append html content
+				html = ""
+				var posts = data.result['posts'];
+				for (var i = 0; i < posts.length; i++) {
+					post = posts[i]
+					post_html = "<li class='post infinite-item' data-url='" + post.url + "'>"
+						+ "<div class='post_header'>" + post.reddit_title + "</div>";
+
+					if (post.subreddit == 'worldnews') {
+						post_html = post_html + "<div class='post_subreddit worldnews'>"
+											  + "<a href='https://www.reddit.com/r/worldnews'>"
+											  + "<i class='fa fa-globe'></i><span>r/worldnews</span></a></div></li>";
+					} else if (post.subreddit =='news') {
+						post_html = post_html + "<div class='post_subreddit news'>"
+											  + "<a href='https://www.reddit.com/r/news'>"
+											  + "<i class='fa fa-newspaper-o'></i><span>r/news</span></a></div></li>";
+					} else if (post.subreddit == 'science') {
+						post_html = post_html + "<div class='post_subreddit science'>"
+											  + "<a href='https://www.reddit.com/r/science'>"
+											  + "<i class='fa fa-flask'></i><span>r/science</span></a></div></li>";
+					} else if (post.subreddit == 'tech') {
+						post_html = post_html + "<div class='post_subreddit tech'>"
+											  + "<a href='https://www.reddit.com/r/tech'>"
+											  + "<i class='fa fa-rocket'></i><span>r/tech</span></a></div></li>";
+					}
+					html = html + post_html;
+					$("#posts_list_div .scroll-container").scrollTop(pos);
+				}
+				Waypoint.destroyAll();			// destroys waypoint, but we'll recreate it
+				$("#all_posts").append(html);	// updates DOM
+
+				// only recreate waypoint if there are more posts to load
+				if (!data.result['error']) {
+					create_waypoint();
+				}
+			}).fail(function() {
+				console.log("Failed to load more posts.");
+			});
+		}
+
+		create_waypoint();
+
 	</script>
 </body>
 </html>

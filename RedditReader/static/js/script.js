@@ -11,8 +11,8 @@ $(function() {
 	function resize_posts_div() {
 		width = $(window).width() - NAMESPACE.article_width;
 		height = $(window).height() - 50;
-		$("#posts_list_div").css('width', width);
-		$("#posts_list_div #all_posts").height(height);
+		$("#posts_list_div .scroll-container").css('width', width);
+		$("#posts_list_div .scroll-container").height(height);
 	}
 
 	function resize_article_div() {

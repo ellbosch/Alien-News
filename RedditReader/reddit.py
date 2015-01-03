@@ -13,6 +13,15 @@ class RedditPost():
         self.subreddit = str(post.subreddit)
         self.isActive = False
 
+    @property
+    def serialize(self):
+        return {
+            'reddit_title': self.reddit_title,
+            'url': self.url,
+            'subreddit': self.subreddit,
+            'isActive': self.isActive
+        }
+
 
 class ArticlePost():
     def __init__(self, url):
@@ -40,7 +49,7 @@ class ArticlePost():
 
 
 def get_useragent():
-    return praw.Reddit(user_agent='Reddit Reader/1.0 by ellbosch')
+    return praw.Reddit(user_agent='Reddit Reader/1.0 by /u/ellbosch')
 
 
 def get_reddit_posts(subreddit, n):

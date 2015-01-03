@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400);
 
 body {
-	background-color: #eee;
+    background-color: #eee;
     margin: 0;
     overflow: hidden;
 }
@@ -16,6 +16,7 @@ header {
     background-color: rgba(255, 255, 255, 0.98);
     position: fixed;
     border-bottom: 1px solid rgba(230, 230, 230, 0.5);
+    z-index: 100;
 }
 
 header ul {
@@ -25,8 +26,8 @@ header ul {
 }
 
 header ul li {
-	padding: 0 15px;
-	display: inline-block;
+    padding: 0 15px;
+    display: inline-block;
 }
 
 header ul li, header ul li a {
@@ -54,6 +55,17 @@ header ul li:hover a {
     padding-right: 5px;
 }
 
+.scroll-container {
+    overflow: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    top: 0;
+    padding-top: 50px;
+    height: 100%;
+    z-index: 0;
+}
+
 
 /* POSTS */
 
@@ -64,27 +76,24 @@ header ul li:hover a {
 }
 
 #posts_list_div {
-    position: absolute;
     display: inline-block;
-    top: 0;
-    height: 100%;
 }
 
 #posts_list_div #all_posts {
-    overflow: scroll;
-    height: 100%;
-    -webkit-overflow-scrolling: touch;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
 
 .post {
-	margin-bottom: 1px;
-	padding: 20px 10px;
-	background-color: #f8f8f8;
-	font-family: 'Open Sans', sans-serif;
+    margin-bottom: 1px;
+    padding: 20px 10px;
+    background-color: #f8f8f8;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .post.active {
-	background-color: #E3EFFF;
+    background-color: #E3EFFF;
 }
 
 .post:hover {
@@ -93,40 +102,40 @@ header ul li:hover a {
 }
 
 .post_header {
-	font-size: 16px;
-	vertical-align: top;
-	font-style: italic;
+    font-size: 16px;
+    vertical-align: top;
+    font-style: italic;
 }
 
 .post_subreddit {
-	margin-top: 10px;
-	font-weight: lighter;
+    margin-top: 10px;
+    font-weight: lighter;
 }
 
 .post_subreddit a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .post_subreddit a:hover {
-	font-weight: normal;
+    font-weight: normal;
 }
 
 .post_subreddit.worldnews a {
-	color: #4183D7;
+    color: #4183D7;
 }
 
 .post_subreddit.news a {
-	color: #EB974E;
+    color: #EB974E;
 
 }
 
 .post_subreddit.science a {
-	color: #3FC380;
+    color: #3FC380;
 
 }
 
 .post_subreddit.tech a {
-	color: #D64541;
+    color: #D64541;
 }
 
 
@@ -141,14 +150,10 @@ header ul li:hover a {
     right: 0;
     top: 0;
     bottom: 0;
-    border-left: 2px solid #eee;
 }
 
 #article_div #article {
     padding: 10px 15px;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
-    height: 100%;
 }
 
 #article_div #article #article-title {
@@ -156,7 +161,7 @@ header ul li:hover a {
 }
 
 #article_div #article #article-image {
-	max-width: 98%;
+    max-width: 98%;
 }
 
 .cover_article-div {
@@ -165,7 +170,7 @@ header ul li:hover a {
     height: 100%;
     top: 0;
     padding-left: 15px;
-	background-color: #fff;
+    background-color: #fff;
 }
 
 #article_div #loading-screen {
@@ -175,7 +180,7 @@ header ul li:hover a {
 
 #article_div #error_display {
     display: none;
-	font-style: italic;
+    font-style: italic;
 }
 
 
