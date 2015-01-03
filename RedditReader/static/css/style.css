@@ -23,6 +23,7 @@ header ul {
     height: 100%;
     padding: 0;
     margin: 0;
+    margin-left: 5px;
 }
 
 header ul li {
@@ -93,7 +94,7 @@ header ul li:hover a {
 
 .post {
     margin-bottom: 1px;
-    padding: 20px 10px;
+    padding: 20px;
     background-color: #f8f8f8;
     font-family: 'Open Sans', sans-serif;
 }
@@ -164,7 +165,7 @@ header ul li:hover a {
 
 #article_div #article {
     display: block;
-    padding: 10px 15px;
+    padding: 10px 20px;
     max-width: 800px;
 }
 
@@ -174,6 +175,11 @@ header ul li:hover a {
 
 #article_div #article #article-image {
     max-width: 98%;
+}
+
+#article_div #article #article-text {
+    line-height: 150%;
+    margin-top: 20px;
 }
 
 .cover_article-div {

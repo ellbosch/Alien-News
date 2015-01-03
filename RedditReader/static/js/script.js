@@ -12,7 +12,7 @@ $(function() {
 		}
 		height = $(window).height() - 50;
 		$("#posts_list_div .scroll-container").height(height);
-		$("#article_div #article").height(height);
+		$("#article_div .scroll-container").height(height);
 	}
 
 	// function call that runs on page load

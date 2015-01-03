@@ -26,12 +26,12 @@
 			<div class="invisible_space"></div>
 
 			<div class="scroll-container">
-				<ul id="all_posts" class="infinite-container">
+				<ul id="all_posts">
 					{% for post in post_list %}
 					{% if post.isActive %}
-					<li class="post active infinite-item" data-url="{{ post.url }}">
+					<li class="post active" data-url="{{ post.url }}">
 					{% else %}
-					<li class="post infinite-item" data-url="{{ post.url }}">
+					<li class="post" data-url="{{ post.url }}">
 					{% endif %}
 						<div class="post_header">{{ post.reddit_title }}</div>
 						{% if post.subreddit == 'worldnews' %}
@@ -86,19 +86,19 @@
 					<img id="article-image" src="{{ article.image }}">
 					<div id="article-text">{{ article.text|safe }}</div>
 				</div>
+			</div>
 
-				<!-- LOADING SPINNER: from http://codepen.io/cmslewis/pen/vosDj -->
-				<div id="loading-screen" class="cover_article-div">
-					<div class="loading-spinner">
-						<div class="dot dotOne"></div>
-						<div class="dot dotTwo"></div>
-						<div class="dot dotThree"></div>
-					</div>
+			<!-- LOADING SPINNER: from http://codepen.io/cmslewis/pen/vosDj -->
+			<div id="loading-screen" class="cover_article-div">
+				<div class="loading-spinner">
+					<div class="dot dotOne"></div>
+					<div class="dot dotTwo"></div>
+					<div class="dot dotThree"></div>
 				</div>
+			</div>
 
-				<div id="error_display" class="cover_article-div">
-					<h2>Could not load article!</h2>
-				</div>
+			<div id="error_display" class="cover_article-div">
+				<h2>Could not load article!</h2>
 			</div>
 		</div>
 	</div>
@@ -159,7 +159,7 @@
 			});
 
 		    // scroll window to top and hide loading screen
-		    $("#article_div").scrollTop(0);
+		    $("#article_div .scroll-container").scrollTop(0);
 		});
 
 		// function call that makes gets more posts
@@ -179,7 +179,7 @@
 				var posts = data.result['posts'];
 				for (var i = 0; i < posts.length; i++) {
 					post = posts[i]
-					post_html = "<li class='post infinite-item' data-url='" + post.url + "'>"
+					post_html = "<li class='post' data-url='" + post.url + "'>"
 						+ "<div class='post_header'>" + post.reddit_title + "</div>";
 
 					if (post.subreddit == 'worldnews') {
