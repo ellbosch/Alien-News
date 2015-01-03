@@ -1,3 +1,5 @@
+import nltk
+nltk.data.path.append('./nltk_data/')
 from newspaper import Article, Config
 import praw
 import lxml.html.clean
