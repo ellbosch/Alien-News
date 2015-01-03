@@ -1,27 +1,22 @@
 $(function() {
-	var NAMESPACE = {
-		article_width: $("#article_div").width()
-	}
 
-	function init() {
-		resize_posts_div();
-		resize_article_div();
-	}
-
-	function resize_posts_div() {
-		width = $(window).width() - NAMESPACE.article_width;
+	function resize_columns() {
+		if ($(window).width() < 1200) {
+			posts_width = $(window).width() - 700;
+			$("#all_posts").width(posts_width);
+			$("#article_div").width(700);
+		} else {
+			article_width = $(window).width() - 500;
+			$("#all_posts").width(500);
+			$("#article_div").width(article_width);
+		}
 		height = $(window).height() - 50;
-		$("#posts_list_div .scroll-container").css('width', width);
 		$("#posts_list_div .scroll-container").height(height);
-	}
-
-	function resize_article_div() {
-		height = $(window).height() - 50;
 		$("#article_div #article").height(height);
 	}
 
 	// function call that runs on page load
-	init();
+	resize_columns();
 
 
 	/****************************************************
@@ -30,7 +25,7 @@ $(function() {
 
 	// window resize events
 	$(window).smartresize(function() {
-		init();
+		resize_columns();
 	});
 
 	// toggles sidebar

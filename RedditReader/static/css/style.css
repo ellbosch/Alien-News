@@ -158,8 +158,14 @@ header ul li:hover a {
     bottom: 0;
 }
 
+#article_div .scroll-container {
+    width: 100%;
+}
+
 #article_div #article {
+    display: block;
     padding: 10px 15px;
+    max-width: 800px;
 }
 
 #article_div #article #article-title {
