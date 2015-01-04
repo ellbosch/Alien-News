@@ -201,6 +201,9 @@ header ul li:hover a {
 #article_div #article #article-text {
     line-height: 150%;
     margin-top: 20px;
+}
+
+#article_div #article #article-text * {
     font-size: 16px;
 }
 
