@@ -21,11 +21,6 @@ $(function() {
 			$("#posts_list_div .scroll-container").width("100%");
 			$("#article_div").width("100%");
 		}
-
-		// set heights
-		height = $(window).height();
-		$("#posts_list_div .scroll-container").height(height);
-		$("#article_div .scroll-container").height(height);
 	}
 
 	// function call that runs on page load
