@@ -67,7 +67,6 @@ def show_article():
 
     return jsonify(result = {"title": article.title,
                              "text": article.text,
-                             "image": article.image,
                              "url": article.url,
                              "summary": article.summary})
 

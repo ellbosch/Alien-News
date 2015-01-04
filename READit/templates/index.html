@@ -146,7 +146,6 @@
 			}).done(function(data) {
 				$("#loading-screen").hide();
 		    	$("#error_display").hide();
-				$("#article-image").attr("src", data.result['image']);
 		    	$("#goto-article a").attr("href", data.result['url']);
 		    	$("#article-title").html(data.result['title']);
 		    	$("#article-text").html(data.result['text']);
