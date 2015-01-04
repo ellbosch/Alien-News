@@ -45,9 +45,9 @@ class ArticlePost():
             self.summary = "Summary not available!"
 
         self.title = article.title
-        self.image = article.top_image
         self.text = article.article_html
         self.url = url
+        # self.image = article.top_image
 
 
 def get_useragent():

@@ -15,6 +15,8 @@ $(function() {
 			article_width = window_width - 270;
 			$("#posts_list_div .scroll-container").width(270);
 			$("#article_div").width(article_width);
+
+			$("#article_div").show();
 		} else {
 			$("#posts_list_div .scroll-container").width("100%");
 			$("#article_div").width("100%");
