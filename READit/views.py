@@ -1,4 +1,4 @@
-from RedditReader import app
+from READit import app
 from flask import render_template, request, jsonify, redirect, current_app
 from functools import wraps
 import reddit

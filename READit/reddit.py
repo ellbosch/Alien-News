@@ -51,7 +51,7 @@ class ArticlePost():
 
 
 def get_useragent():
-    return praw.Reddit(user_agent='Reddit Reader/1.0 by /u/ellbosch')
+    return praw.Reddit(user_agent='READit/1.0 by /u/ellbosch')
 
 
 def get_reddit_posts(subreddit, n):
