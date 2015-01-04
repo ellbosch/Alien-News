@@ -75,7 +75,7 @@ header ul li:hover a {
 }
 
 .scroll-container {
-    overflow: scroll;
+    overflow-y: scroll;
     height: 100%;
     -webkit-overflow-scrolling: touch;
     position: absolute;
