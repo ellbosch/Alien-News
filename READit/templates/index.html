@@ -52,7 +52,13 @@
 					</li>
 					{% endfor %}
 				</ul>
-				<div id="load-more-posts"></div>
+				<div id="load-more-posts">
+					<div class="loading-spinner" id="loading-spinner-posts">
+						<div class="dot dotOne"></div>
+						<div class="dot dotTwo"></div>
+						<div class="dot dotThree"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -60,7 +66,7 @@
 			<div class="scroll-container">
 				<header id="header-article">
 					<ul>
-						<li id="go-back-to-posts"><a>BACK</a></li>
+						<li id="go-back-to-posts"><a><i class="fa fa-close"></i></a></li>
 						<li id="goto-article">
 							<a href="{{ article.url }}">
 								<i class="fa fa-share"></i>
@@ -213,6 +219,8 @@
 				// only recreate waypoint if there are more posts to load
 				if (!data.result['error']) {
 					create_waypoint();
+				} else {
+					$("#load-more-posts").hide();
 				}
 			}).fail(function() {
 				console.log("Failed to load more posts.");

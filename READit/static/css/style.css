@@ -156,6 +156,15 @@ header ul li:hover a {
     color: #D64541;
 }
 
+#load-more-posts {
+    height: 100px;
+}
+
+#load-more-posts #loading-spinner-posts {
+    top: auto;
+    margin-top: 40px;
+}
+
 
 /* ARTICLE DIV */
 
@@ -172,6 +181,10 @@ header ul li:hover a {
 
 #go-back-to-posts {
     display: none;
+}
+
+#go-back-to-posts a {
+    color: #2850BF;
 }
 
 #article_div .scroll-container {
@@ -263,6 +276,7 @@ header ul li:hover a {
 
     #posts_list_div #all_posts .post.active:hover {
         cursor: pointer;
+        background-color: #f0f0f0;
     }
 
     #posts_list_div .scroll-container {
@@ -271,14 +285,19 @@ header ul li:hover a {
 
     #article_div {
         left: 0;
+        display: none;
     }
 
     #tldr .tooltip-content {
-        margin: 20px 0 20px -220px;
-        width: 400px;
+        margin: 20px 0 20px -240px;
+        width: 300px;
     }
 
     #go-back-to-posts {
         display: inline-block;
+    }
+
+    #goto-article {
+        margin-left: 5px;
     }
 }
