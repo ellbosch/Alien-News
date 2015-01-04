@@ -103,18 +103,18 @@ header ul li:hover a {
     list-style-type: none;
 }
 
-.post {
+#posts_list_div #all_posts .post {
     margin-bottom: 1px;
     padding: 20px;
     background-color: #f8f8f8;
     font-family: 'Open Sans', sans-serif;
 }
 
-.post.active {
+#posts_list_div #all_posts .post.active {
     background-color: #E3EFFF;
 }
 
-.post:hover:not(.active) {
+#posts_list_div #all_posts .post:hover:not(.active) {
     background-color: #f0f0f0;
     cursor: pointer;
 }

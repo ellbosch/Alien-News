@@ -117,7 +117,9 @@
 
 		// turn off hover css if device has touch input
 		if ($.support.touch) {
-			$("#posts_list_div .post:hover").css('background-color', '#f8f8f8');
+			$("#posts_list_div .post").hover(function() {
+				$(this).css('background-color', '#f8f8f8');
+			}
 		}
 
 		// create waypoint for loading more posts
