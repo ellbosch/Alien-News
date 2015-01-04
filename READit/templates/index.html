@@ -115,13 +115,6 @@
 
 		var waypoints;
 
-		// turn off hover css if device has touch input
-		if ($.support.touch) {
-			$("#posts_list_div .post").hover(function() {
-				$(this).css('background-color', '#f8f8f8');
-			});
-		}
-
 		// create waypoint for loading more posts
 		function create_waypoint() {
 			waypoints = $("#load-more-posts").waypoint({
