@@ -9,6 +9,7 @@
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="{{ url_for('static', filename='js/jquery.js') }}">\x3C/script>')</script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-ui.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 <body>
@@ -61,6 +62,7 @@
 		<div id="article_div">
 			<header id="header-article">
 				<ul>
+					<li id="go-back-to-posts"><a>BACK</a></li>
 					<li id="goto-article">
 						<a href="{{ article.url }}">
 							<i class="fa fa-share"></i>
@@ -83,7 +85,7 @@
 			<div class="scroll-container">
 				<div id="article">
 					<h2 id="article-title">{{ article.title }}</h2>
-					<img id="article-image" src="{{ article.image }}">
+					<!-- <img id="article-image" src="{{ article.image }}"> -->
 					<div id="article-text">{{ article.text|safe }}</div>
 				</div>
 			</div>
@@ -130,6 +132,11 @@
 
 		// updates what article is viewed
 		$(document).on('click', '.post', function() {
+			// show article div when window is less than 670px
+			if ($(window).width() <= 670) {
+				$("#article_div").toggle("slide", { direction: 'right' });
+			}
+
 			// show loading screen before ajax request completes
 			$("#loading-screen").show();
 

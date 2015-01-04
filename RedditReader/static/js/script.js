@@ -3,18 +3,21 @@ $(function() {
 	function resize_columns() {
 		// set widths
 		var window_width = $(window).width();
-		if (window_width < 970) {
-			article_width = window_width - 270;
-			$("#all_posts").width(270);
-			$("#article_div").width(article_width);
-		} else if (window_width < 1200) {
-			posts_width = window_width - 700;
-			$("#all_posts").width(posts_width);
-			$("#article_div").width(700);
-		} else {
+		if (window_width >= 1200) {
 			article_width = window_width - 500;
-			$("#all_posts").width(500);
+			$("#posts_list_div .scroll-container").width(500);
 			$("#article_div").width(article_width);
+		} else if (window_width >= 970) {
+			posts_width = window_width - 700;
+			$("#posts_list_div .scroll-container").width(posts_width);
+			$("#article_div").width(700);
+		} else if (window_width > 670) {
+			article_width = window_width - 270;
+			$("#posts_list_div .scroll-container").width(270);
+			$("#article_div").width(article_width);
+		} else {
+			$("#posts_list_div .scroll-container").width("100%");
+			$("#article_div").width("100%");
 		}
 
 		// set heights
@@ -35,6 +38,11 @@ $(function() {
 	$(window).smartresize(function() {
 		resize_columns();
 	});
+
+	// back button handling when window width is less than 670px
+	$("#go-back-to-posts").on('click', function() {
+		$("#article_div").toggle("slide", { direction: 'right' });
+	})
 
 	// toggles sidebar
 	$("#sidebar_button").click(function() {
