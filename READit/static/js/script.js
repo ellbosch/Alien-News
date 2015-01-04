@@ -23,7 +23,7 @@ $(function() {
 		}
 
 		// set heights
-		height = $(window).height() - 50;
+		height = $(window).height();
 		$("#posts_list_div .scroll-container").height(height);
 		$("#article_div .scroll-container").height(height);
 	}

@@ -21,14 +21,6 @@ header {
     border-bottom: 1px solid rgba(230, 230, 230, 0.5);
 }
 
-#header-posts {
-    z-index: 20;
-}
-
-#header-article {
-    z-index: 100;
-}
-
 header ul {
     height: 100%;
     padding: 0;
@@ -59,10 +51,15 @@ header ul li:hover a {
 #header-posts {
     background-color: rgba(249, 249, 249, 0.95);
     border-bottom: 1px solid rgba(220, 220, 220, 0.5);
+    z-index: 20;
 }
 
 #header-posts ul li {
     color: #2850BF;
+}
+
+#header-article {
+    z-index: 100;
 }
 
 #logo-img {
@@ -83,7 +80,6 @@ header ul li:hover a {
     -webkit-overflow-scrolling: touch;
     position: absolute;
     top: 0;
-    padding-top: 50px;
     height: 100%;
     z-index: 0;
 }
@@ -172,7 +168,6 @@ header ul li:hover a {
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 90;
 }
 
 #go-back-to-posts {
@@ -187,6 +182,7 @@ header ul li:hover a {
     display: block;
     padding: 10px 20px;
     max-width: 800px;
+    z-index: 90;
 }
 
 #article_div #article #article-title {

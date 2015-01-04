@@ -14,17 +14,16 @@
 <body>
 	<div id="content">
 		<div id="posts_list_div">
-		
-			<header id="header-posts">
-				<ul>
-					<li>
-						<img alt="READit" src="{{ url_for('static', filename='logo.png') }}" id="logo-img">
-					</li>
-				</ul>
-			</header>
-			<div class="invisible_space"></div>
-
 			<div class="scroll-container">
+				<header id="header-posts">
+					<ul>
+						<li>
+							<img alt="READit" src="{{ url_for('static', filename='logo.png') }}" id="logo-img">
+						</li>
+					</ul>
+				</header>
+				<div class="invisible_space"></div>
+
 				<ul id="all_posts">
 					{% for post in post_list %}
 					{% if post.isActive %}
@@ -58,29 +57,29 @@
 		</div>
 
 		<div id="article_div">
-			<header id="header-article">
-				<ul>
-					<li id="go-back-to-posts"><a>BACK</a></li>
-					<li id="goto-article">
-						<a href="{{ article.url }}">
-							<i class="fa fa-share"></i>
-							<span>View Article</span>
-						</a>
-					</li>
-					<li id="tldr">
-						<span class="tooltip tooltip-effect-1">
-							<i class="fa fa-book"></i>
-							<span class="tooltip-item">TLDR</span>
-							<span class="tooltip-content clearfix">
-								<span class="tooltip-text" id="tldr-text">{{ article.summary }}</span>
-							</span>
-						</span>
-					</li>
-				</ul>
-			</header>
-			<div class="invisible_space"></div>
-
 			<div class="scroll-container">
+				<header id="header-article">
+					<ul>
+						<li id="go-back-to-posts"><a>BACK</a></li>
+						<li id="goto-article">
+							<a href="{{ article.url }}">
+								<i class="fa fa-share"></i>
+								<span>View Article</span>
+							</a>
+						</li>
+						<li id="tldr">
+							<span class="tooltip tooltip-effect-1">
+								<i class="fa fa-book"></i>
+								<span class="tooltip-item">TLDR</span>
+								<span class="tooltip-content clearfix">
+									<span class="tooltip-text" id="tldr-text">{{ article.summary }}</span>
+								</span>
+							</span>
+						</li>
+					</ul>
+				</header>
+				<div class="invisible_space"></div>
+
 				<div id="article">
 					<h2 id="article-title">{{ article.title }}</h2>
 					<!-- <img id="article-image" src="{{ article.image }}"> -->
@@ -110,6 +109,11 @@
 
 		var waypoints;
 
+		// turn off hover css if device has touch input
+		if ($.support.touch) {
+			$("#posts_list_div .post:hover").css('background-color', '#f8f8f8');
+		}
+
 		// create waypoint for loading more posts
 		function create_waypoint() {
 			waypoints = $("#load-more-posts").waypoint({
@@ -121,8 +125,12 @@
 			})
 		}
 
+
 		// updates what article is viewed
-		$(document).on('click tap', '.post', function() {
+		var custom_event = $.support.touch ? "tap" : "click";
+		$(document).on(custom_event, '.post', function(event) {
+			event.preventDefault();
+
 			// show article div when window is less than 670px
 			if ($(window).width() <= 670) {
 				$("#article_div").toggle("slide", { direction: 'right' });
