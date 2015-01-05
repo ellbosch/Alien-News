@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400);
 
 body {
-    background-color: #eee;
+    background-color: rgb(249, 249, 249);
     margin: 0;
     overflow: hidden;
 }
@@ -294,4 +294,14 @@ header ul li:hover a {
     #goto-article {
         margin-left: 5px;
     }
+}
+
+/* both iPhone and iPad support */
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px),
+       only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    
+    .post:hover {
+        background-color: #f8f8f8;
+    }
+
 }
