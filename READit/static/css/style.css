@@ -103,6 +103,7 @@ header ul li:hover a {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    background-color: #f0f0f0;
 }
 
 #posts_list_div #all_posts .post {
