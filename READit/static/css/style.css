@@ -76,11 +76,13 @@ header ul li:hover a {
 
 .scroll-container {
     overflow-y: scroll;
-    height: 100%;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+    height: 100%;
     position: absolute;
     top: 0;
     height: 100%;
+    width: 100%;
     z-index: 0;
 }
 
@@ -187,10 +189,6 @@ header ul li:hover a {
     color: #2850BF;
 }
 
-#article_div .scroll-container {
-    width: 100%;
-}
-
 #article_div #article {
     display: block;
     padding: 10px 20px;
@@ -277,10 +275,6 @@ header ul li:hover a {
     #posts_list_div #all_posts .post.active:hover {
         cursor: pointer;
         background-color: #f0f0f0;
-    }
-
-    #posts_list_div .scroll-container {
-        width: 100%;
     }
 
     #article_div {
