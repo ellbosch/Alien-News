@@ -264,6 +264,8 @@ header ul li:hover a {
 
     #go-back-to-posts {
         display: none;
+        border-right: 1px solid #f4f4f4;
+        padding: 0 20px;
     }
 }
 
@@ -283,8 +285,8 @@ header ul li:hover a {
     }
 
     #tldr .tooltip-content {
-        margin: 20px 0 20px -240px;
-        width: 300px;
+        margin: 20px 0 20px -220px;
+        width: 280px;
     }
 
     #go-back-to-posts {
@@ -294,14 +296,4 @@ header ul li:hover a {
     #goto-article {
         margin-left: 5px;
     }
-}
-
-/* both iPhone and iPad support */
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px),
-       only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    
-    .post:hover {
-        background-color: #f8f8f8;
-    }
-
 }
