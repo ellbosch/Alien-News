@@ -130,7 +130,11 @@
 		// updates what article is viewed
 		var custom_event = $.support.touch ? "tap" : "click";
 		$(document).on(custom_event, '.post', function(event) {
-			event.preventDefault();
+
+			var target = $( event.target );
+			if (!target.is( "span" )) {
+				event.preventDefault();
+			}
 
 			// show article div when window is less than 670px
 			if ($(window).width() <= 670) {
